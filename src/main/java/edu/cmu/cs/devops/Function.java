@@ -8,7 +8,10 @@ import com.microsoft.azure.functions.HttpStatus;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
+import org.apache.commons.codec.binary.Base64; // import Base64
 
+
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -32,12 +35,53 @@ public class Function {
 
         // Parse query parameter
         final String query = request.getQueryParameters().get("name");
-        final String name = request.getBody().orElse(query);
+        final String input = request.getBody().orElse(query);
 
-        if (name == null) {
+        if (input == null) {
             return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a name on the query string or in the request body").build();
         } else {
-            return request.createResponseBuilder(HttpStatus.OK).body("Hello, " + name).build();
+            // String decoded = decodeBase64(input);
+            // String sorted = sortWords(decoded);
+            // String encoded = encodeBase64(sorted);
+            // Decode Base64
+            String decoded = decodeBase64(input);
+            context.getLogger().info("Decoded: " + decoded);
+
+            // Sort words
+            String sorted = sortWords(decoded);
+            context.getLogger().info("Sorted: " + sorted);
+
+            // Encode Base64
+            String encoded = encodeBase64(sorted);
+            context.getLogger().info("Encoded: " + encoded);
+            return request.createResponseBuilder(HttpStatus.OK).body(encoded).build();
         }
+    }
+
+    private String decodeBase64(String base64Input) {
+        byte[] decodedBytes = Base64.decodeBase64(base64Input);
+        return new String(decodedBytes);
+    }
+
+    private String sortWords(String input) {
+        // Split the input into words
+        String[] words = input.split("\\s+");
+
+        // Sort the words
+        Arrays.sort(words, (s1, s2) -> {
+            int result = s1.compareToIgnoreCase(s2);
+            if (result == 0) {
+                result = s1.compareTo(s2);
+            }
+            return result;
+        });
+
+        // Join the sorted words with whitespace
+        return String.join(" ", words);
+    }
+    
+    private String encodeBase64(String input) {
+        byte[] encodedBytes = Base64.encodeBase64(input.getBytes());
+        return new String(encodedBytes);
     }
 }

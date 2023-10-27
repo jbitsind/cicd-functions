@@ -1,0 +1,24 @@
+
+# This is a basic workflow to help you get started with the CI/CD for Functions Project
+name: Triggering Swap Job
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  swap-function:
+    if: ${{ github.head_ref == 'develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 'Swap the Azure Function'
+        run: |
+          az functionapp deployment slot swap -g java-functions-group -n my-first-function-20231027191045174 --slot staging --target-slot production

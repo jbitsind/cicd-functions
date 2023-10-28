@@ -12,6 +12,7 @@ import org.apache.commons.codec.binary.Base64; // import Base64
 
 
 import java.util.Arrays;
+import java.util.Collections; // Add import for Collections
 import java.util.Optional;
 
 /**
@@ -63,23 +64,17 @@ public class Function {
         return new String(decodedBytes);
     }
 
-    private String sortWords(String input) {
-        // Split the input into words
-        String[] words = input.split("\\s+");
+    protected String sortWords(String input) {
+            // Split the input into words
+            String[] words = input.split("\\s+");
 
-        // Sort the words
-        Arrays.sort(words, (s1, s2) -> {
-            int result = s1.compareToIgnoreCase(s2);
-            if (result == 0) {
-                result = s1.compareTo(s2);
-            }
-            return result;
-        });
+            // Sort the words in descending order
+            Arrays.sort(words, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
 
-        // Join the sorted words with whitespace
-        return String.join(" ", words);
+            // Join the sorted words with whitespace
+            return String.join(" ", words);
     }
-    
+
     private String encodeBase64(String input) {
         byte[] encodedBytes = Base64.encodeBase64(input.getBytes());
         return new String(encodedBytes);

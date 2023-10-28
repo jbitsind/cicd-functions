@@ -1,3 +1,7 @@
 {
-    "task1_function_endpoint": "https://my-first-function-20231027191045174.azurewebsites.net/api/HttpExample?",
+    "github_username": "jbitsind",
+    "repository": "cicd-functions",
+    "token": "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",
+    "function_app_name": "my-first-function-20231027191045174",
+    "task2_function_endpoint": "https://my-first-function-20231027191045174.azurewebsites.net/api/HttpExample?"
 }

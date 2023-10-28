@@ -46,15 +46,15 @@ public class Function {
             // String encoded = encodeBase64(sorted);
             // Decode Base64
             String decoded = decodeBase64(input);
-            context.getLogger().info("Decoded: " + decoded);
+            context.getLogger().info("Decoded String: " + decoded);
 
             // Sort words
             String sorted = sortWords(decoded);
-            context.getLogger().info("Sorted: " + sorted);
+            context.getLogger().info("Sorted String: " + sorted);
 
             // Encode Base64
             String encoded = encodeBase64(sorted);
-            context.getLogger().info("Encoded: " + encoded);
+            context.getLogger().info("Encoded String: " + encoded);
             return request.createResponseBuilder(HttpStatus.OK).body(encoded).build();
         }
     }

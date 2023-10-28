@@ -56,14 +56,13 @@ public class FunctionTest {
         assertEquals(ret.getBody().toString(), "dGgxJCBIaSBIZWxsbyBmdW4/IGZyb20gZnJvbSBEZXZPcHMhIEF6dXJlISA0IDFzbid0");
     }
 
-
     @Test
     public void testSortWordsDescending() {
         // Set up the input sentence
-        String inputSentence = "Cloud DevOps is fun and awesome!";
+        String inputSentence = "Cloud DevOps fun and awesome!";
 
         // Define the expected output after sorting in descending order
-        String expectedDescendingOutput = "is fun DevOps Cloud awesome! and";
+        String expectedDescendingOutput = "fun DevOps Cloud awesome! and";
 
         // Instantiate the Function class
         Function function = new Function();

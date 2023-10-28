@@ -46,15 +46,15 @@ public class Function {
             // String encoded = encodeBase64(sorted);
             // Decode Base64
             String decoded = decodeBase64(input);
-            context.getLogger().info("Decoded: " + decoded);
+            context.getLogger().info("Decoded string: " + decoded);
 
             // Sort words
             String sorted = sortWords(decoded);
-            context.getLogger().info("Sorted: " + sorted);
+            context.getLogger().info("Sorted string: " + sorted);
 
             // Encode Base64
             String encoded = encodeBase64(sorted);
-            context.getLogger().info("Encoded: " + encoded);
+            context.getLogger().info("Encoded string: " + encoded);
             return request.createResponseBuilder(HttpStatus.OK).body(encoded).build();
         }
     }
@@ -67,10 +67,8 @@ public class Function {
     protected String sortWords(String input) {
             // Split the input into words
             String[] words = input.split("\\s+");
-
             // Sort the words in descending order
             Arrays.sort(words, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
-
             // Join the sorted words with whitespace
             return String.join(" ", words);
     }

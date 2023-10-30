@@ -25,9 +25,8 @@ public class FunctionTest {
 
     private final Base64 base64 = new Base64();
 
-    private static final String PROPER_REQUEST_INPUT             = "Hello from DevOps! Hi from Azure! 1sn't th1$ fun? 4";
-    private static final String PROPER_REQUEST_OUTPUT            = "1sn't 4 Azure! DevOps! from from fun? Hello Hi th1$";
-    private static final String PROPER_REQUEST_OUTPUT_DESCENDING = "th1$ Hi Hello fun? from from DevOps! Azure! 4 1sn't";
+    private static final String PROPER_REQUEST_INPUT = "Hello from DevOps! Hi from Azure! 1sn't th1$ fun?   4";
+    private static final String PROPER_REQUEST_OUTPUT = "1sn't   4 Azure! DevOps! from from fun? Hello Hi th1$";
 
     /**
      * Unit test for HttpTriggerJava method.
@@ -54,8 +53,25 @@ public class FunctionTest {
 
         // Verify
         assertEquals(ret.getStatus(), HttpStatus.OK);
-        assertEquals(ret.getBody().toString(), base64.encodeAsString(PROPER_REQUEST_OUTPUT_DESCENDING.getBytes()));
-      
+        assertEquals(ret.getBody().toString(), "dGgxJCBIaSBIZWxsbyBmdW4/IGZyb20gZnJvbSBEZXZPcHMhIEF6dXJlISA0IDFzbid0");
+    }
+
+    @Test
+    public void testSortWordsDescending() {
+        // Set up the input sentence
+        String inputSentence = "Cloud DevOps fun and awesome!";
+
+        // Define the expected output after sorting in descending order
+        String expectedDescendingOutput = "fun DevOps Cloud awesome! and";
+
+        // Instantiate the Function class
+        Function function = new Function();
+
+        // Invoke the sorting method for descending order
+        String actualDescendingOutput = function.sortWords(inputSentence);
+
+        // Verify if the output matches the expected descending order
+        assertEquals(expectedDescendingOutput, actualDescendingOutput);
     }
     
 }

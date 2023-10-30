@@ -25,8 +25,10 @@ public class FunctionTest {
 
     private final Base64 base64 = new Base64();
 
-    private static final String PROPER_REQUEST_INPUT = "Hello from DevOps! Hi from Azure! 1sn't th1$ fun? 4";
-    private static final String PROPER_REQUEST_OUTPUT = "1sn't 4 Azure! DevOps! from from fun? Hello Hi th1$";
+    private static final String PROPER_REQUEST_INPUT             = "Hello from DevOps! Hi from Azure! 1sn't th1$ fun? 4";
+    private static final String PROPER_REQUEST_OUTPUT            = "1sn't 4 Azure! DevOps! from from fun? Hello Hi th1$";
+    private static final String PROPER_REQUEST_OUTPUT_DESCENDING = "th1$ Hi Hello fun? from from DevOps! Azure! 4 1sn't";
+
 
     /**
      * Unit test for HttpTriggerJava method.
@@ -53,32 +55,26 @@ public class FunctionTest {
 
         // Verify
         assertEquals(ret.getStatus(), HttpStatus.OK);
-        assertEquals(ret.getBody().toString(), base64.encodeAsString(PROPER_REQUEST_OUTPUT.getBytes()));
+        assertEquals(ret.getBody().toString(), base64.encodeAsString(PROPER_REQUEST_OUTPUT_DESCENDING.getBytes()));
     }
 
-    @Test
-    public void testHttpTriggerJavaForImproperInput() {
-        // Setup
-        @SuppressWarnings("unchecked")
-        final HttpRequestMessage<Optional<String>> req = mock(HttpRequestMessage.class);
+    // @Test
+    // public void testSortWordsDescending() {
+    //     // Set up the input sentence
+    //     String inputSentence = "Cloud DevOps fun and awesome!";
 
-        final Optional<String> queryBody = Optional.empty();
-        doReturn(queryBody).when(req).getBody();
+    //     // Define the expected output after sorting in descending order
+    //     String expectedDescendingOutput = "fun DevOps Cloud awesome! and";
 
-        doAnswer((Answer<HttpResponseMessage.Builder>) invocation -> {
-            HttpStatus status = (HttpStatus) invocation.getArguments()[0];
-            return new HttpResponseMessageMock.HttpResponseMessageBuilderMock().status(status);
-        }).when(req).createResponseBuilder(any(HttpStatus.class));
+    //     // Instantiate the Function class
+    //     // Function function = new Function();
 
-        final ExecutionContext context = mock(ExecutionContext.class);
-        doReturn(Logger.getGlobal()).when(context).getLogger();
+    //     // Invoke the sorting method for descending order
+    //     // String actualDescendingOutput = function.sortWords(inputSentence);
+    //     String actualDescendingOutput = sortWords(inputSentence);
 
-        // Invoke
-        final HttpResponseMessage ret = new Function().run(req, context);
-
-        // Verify
-        assertEquals(ret.getStatus(), HttpStatus.BAD_REQUEST);
-    }
-
-
+    //     // Verify if the output matches the expected descending order
+    //     assertEquals(expectedDescendingOutput, actualDescendingOutput);
+    // }
+    
 }

@@ -49,4 +49,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           package: './${{ env.POM_XML_DIRECTORY }}/target/azure-functions/${{ env.POM_FUNCTIONAPP_NAME }}'
-          publish-profile: ${{ secrets.AZURE_STAGING_PUBLISH_PROFILE }}  # Replace with your staging publish profile secret
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_STAGING_PUBLISH_PROFILE }}  # Replace with your staging publish profile secret

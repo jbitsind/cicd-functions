@@ -29,7 +29,6 @@ public class FunctionTest {
     private static final String PROPER_REQUEST_OUTPUT            = "1sn't 4 Azure! DevOps! from from fun? Hello Hi th1$";
     private static final String PROPER_REQUEST_OUTPUT_DESCENDING = "th1$ Hi Hello fun? from from DevOps! Azure! 4 1sn't";
 
-
     /**
      * Unit test for HttpTriggerJava method.
      */
@@ -56,25 +55,7 @@ public class FunctionTest {
         // Verify
         assertEquals(ret.getStatus(), HttpStatus.OK);
         assertEquals(ret.getBody().toString(), base64.encodeAsString(PROPER_REQUEST_OUTPUT_DESCENDING.getBytes()));
+      
     }
-
-    // @Test
-    // public void testSortWordsDescending() {
-    //     // Set up the input sentence
-    //     String inputSentence = "Cloud DevOps fun and awesome!";
-
-    //     // Define the expected output after sorting in descending order
-    //     String expectedDescendingOutput = "fun DevOps Cloud awesome! and";
-
-    //     // Instantiate the Function class
-    //     // Function function = new Function();
-
-    //     // Invoke the sorting method for descending order
-    //     // String actualDescendingOutput = function.sortWords(inputSentence);
-    //     String actualDescendingOutput = sortWords(inputSentence);
-
-    //     // Verify if the output matches the expected descending order
-    //     assertEquals(expectedDescendingOutput, actualDescendingOutput);
-    // }
     
 }

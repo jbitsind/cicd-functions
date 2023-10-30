@@ -3,5 +3,8 @@
     "repository": "cicd-functions",
     "token": "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",
     "function_app_name": "my-first-function-20231027191045174",
-    "task2_function_endpoint": "https://my-first-function-20231027191045174.azurewebsites.net/api/HttpExample?"
+    "task3_prod_function_endpoint": "https://my-first-function-20231027191045174.azurewebsites.net/api/HttpExample",
+    "task3_stage_function_endpoint": "https://my-first-function-20231027191045174-staging.azurewebsites.net/api/HttpExample",
+    "task2_function_endpoint": "https://my-first-function-20231027191045174.azurewebsites.net/api/HttpExample"
 }
+
